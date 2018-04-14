@@ -142,3 +142,12 @@ for(i=1;i<=sn1;i++)
 	tt=tt+stat[i];
 }
 f_tat=fttat/fn1;
+printf("-----------------------------------------FACULTY QUERIES --------------------------------------------------- \n");
+printf("\n\n query \t query ID \t BurstTime \t Waiting Time \t TurnaroundTime \n ");
+for(i=1;i<=sn1;i++)
+{
+ printf("\n %5d \t %5d \t\t %5d \t\t %5d \t\t %5d \n", i,fpid[i],fbt[i],fwt[i],ftat[i]);
+}
+printf("\n Amount of time spent on queries  %f",tt);
+printf("\n Average Turn around is  %f",s_tat+f_tat);
+} 
