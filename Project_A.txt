@@ -83,3 +83,62 @@ for(i=1;i<=sn1;i++)
 }
 s_tat=sttat/sn1;
 printf("-----------------------------------------STUDENT QUERIES --------------------------------------------------- \n");
+printf("\n\n query \t query ID \t BurstTime \t Waiting Time \t TurnaroundTime \n ");
+for(i=1;i<=sn1;i++)
+{
+ printf("\n %5d \t %5d \t\t %5d \t\t %5d \t\t %5d \n", i,spid[i],sbt[i],swt[i],stat[i]);
+}
+printf(" \n ");
+
+for(i=1;i<=fn;i++)
+{
+ fflag[i]=1;
+ fwt[i]=0;
+}
+while(fn!=0)
+{
+ for(i=1;i<=fn;i++)
+ {
+ if(fneed[i]>=time_slice)
+ {
+ for(j=1;j<=fn;j++)
+ {
+ if((i!=j)&&(fflag[i]==1)&&(fneed[j]!=0))
+ fwt[j]+=time_slice;
+ }
+ 
+ fneed[i]-=time_slice;
+ if(fneed[i]==0)
+ {
+fflag[i]=0;
+fn--;
+ }
+ }
+ else
+ {
+ for(j=1;j<=fn;j++)
+ {
+ if((i!=j)&&(fflag[i]==1)&&(fneed[j]!=0))
+ fwt[j]+=fneed[i];
+ }
+ fneed[i]=0;
+ fn--;
+ fflag[i]=0;
+ }
+}
+}
+for(i=1;i<=fn1;i++)
+{
+ ftat[i]=fwt[i]+fbt[i];
+ ftwt=ftwt+fwt[i];
+ fttat=fttat+ftat[i];
+}
+for(i=1;i<=fn1;i++)
+{
+	tt=tt+ftat[i];
+}
+for(i=1;i<=sn1;i++)
+{
+	tt=tt+stat[i];
+}
+f_tat=fttat/fn1;
