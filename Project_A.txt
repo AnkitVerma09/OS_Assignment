@@ -8,36 +8,36 @@
 int main()
 {
  printf("---------------------------------------Welcome Sudesh Sharma--------------------------------------------\n");
-int time_slice,spid[10],sneed[10],swt[10],stat[10],i,j,sn;
+int time_slice,spid[10],sneed[10],swt[10],stat[10],i,j,sn;    // intializing variables
 int sn1,fpid[10],fneed[10],fwt[10],ftat[10],fn,fn1;
 int sbt[10],sflag[10],sttat=0,stwt=0,fbt[10],fflag[10],fttat=0,ftwt=0;
 float s_wt,s_tat;
 float f_wt,f_tat,tt;
 printf("\t\t \n");
 printf("Please provide the number of student queries");
-scanf("%d",&sn);
+scanf("%d",&sn);   //taking number  of student queries
 sn1=sn;
 for(i=1;i<=sn;i++)
 {
  printf("\n Enter the %d student query ID ",i);
  scanf("%d",&spid[i]);
  printf("\n Enter the Burst Time for the query ");
- scanf("%d",&sbt[i]);
+ scanf("%d",&sbt[i]);            // taking burst time 
  sneed[i]=sbt[i];
 }
 printf("\n Please provide the number of faculty queries ");
 scanf("%d",&fn);
-fn1=fn;
+fn1=fn;           // taking number of faculty queries 
 for(i=1;i<=fn;i++)
 {
  printf("\n Enter the %d faculty query ID ",i);
  scanf("%d",&fpid[i]);
  printf("\n Enter the Burst Time for the query ");
- scanf("%d",&fbt[i]);
+ scanf("%d",&fbt[i]);    //taking burst time for faculty queries
  fneed[i]=fbt[i];
 }
 printf("\n Enter the Timeslice ");
-scanf("%d",&time_slice);
+scanf("%d",&time_slice);  // taking slice time value as a input
 for(i=1;i<=sn;i++)
 {
  sflag[i]=1;
@@ -52,7 +52,7 @@ while(sn!=0)
  for(j=1;j<=sn;j++)
  {
  if((i!=j)&&(sflag[i]==1)&&(sneed[j]!=0))
- swt[j]+=time_slice;
+ swt[j]+=time_slice;       //calculating student wait time
  }
  
  sneed[i]-=time_slice;
@@ -79,7 +79,7 @@ for(i=1;i<=sn1;i++)
 {
  stat[i]=swt[i]+sbt[i];
  stwt=stwt+swt[i];
- sttat=sttat+stat[i];
+ sttat=sttat+stat[i]; // calculating student turnaround time
 }
 s_tat=sttat/sn1;
 printf("-----------------------------------------STUDENT QUERIES --------------------------------------------------- \n");
@@ -141,13 +141,13 @@ for(i=1;i<=sn1;i++)
 {
 	tt=tt+stat[i];
 }
-f_tat=fttat/fn1;
+f_tat=fttat/fn1; // calculating faculty turnaround time
 printf("-----------------------------------------FACULTY QUERIES --------------------------------------------------- \n");
 printf("\n\n query \t query ID \t BurstTime \t Waiting Time \t TurnaroundTime \n ");
 for(i=1;i<=sn1;i++)
 {
  printf("\n %5d \t %5d \t\t %5d \t\t %5d \t\t %5d \n", i,fpid[i],fbt[i],fwt[i],ftat[i]);
 }
-printf("\n Amount of time spent on queries  %f",tt);
-printf("\n Average Turn around is  %f",s_tat+f_tat);
+printf("\n Amount of time spent on queries  %f",tt); //final value of  total time
+printf("\n Average Turn around is  %f",s_tat+f_tat); //final value of total time 
 } 
